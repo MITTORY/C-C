@@ -1,0 +1,117 @@
+﻿<Window x:Class="CollectionList.Window3"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CollectionList"
+        mc:Ignorable="d"
+        Height="1000" Width="1280" ResizeMode="NoResize" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="Transparent">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="boolToVis"/>
+    </Window.Resources>
+
+    <Border CornerRadius="35 35 35 35" Background="#FF222222" MouseDown="Border_MouseDown">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--Оглавление-->
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Border Background="#FF191919" CornerRadius="0 35 0 0">
+                    <Label Content="DRAW" FontSize="45" FontWeight="Bold" Foreground="White" FontFamily="Srbija Sans" Height="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                </Border>
+            </Grid>
+
+            <!--left-->
+            <Border Grid.Row="0" Grid.Column="0" Background="#FF191919" CornerRadius="35 0 0 35" Grid.RowSpan="2" >
+                <Grid>
+                    <StackPanel VerticalAlignment="Top" Height="88" Margin="0,120,0,0">
+                        <Grid Grid.Row="0" Grid.Column="0" Background="#FF222222" Margin="0, 0, 0, 90" Opacity="90" Height="90">
+                            <TextBlock Text="COLLECTION" Foreground="white" FontSize="18"  FontWeight="Bold" FontFamily="Srbija Sans" VerticalAlignment="Top" TextAlignment="Center" Margin="0,5,0,0"/>
+                            <TextBlock Text="&amp;" Foreground="white" FontSize="20" FontWeight="Bold" FontFamily="Srbija Sans" VerticalAlignment="Center" TextAlignment="Center" Margin="0,0,0,0"/>
+                            <TextBlock Text="CALCULATION" Foreground="white" FontSize="18" FontWeight="Bold" FontFamily="Srbija Sans" VerticalAlignment="Bottom" TextAlignment="Center" Margin="0,0,0,5"/>
+                        </Grid>
+                        <!--МенюСлева-->
+                    </StackPanel>
+                    <StackPanel Margin="0,300,0,402" HorizontalAlignment="Center">
+                        <Button Content="HOME" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontWeight="Bold" FontFamily="Cascadia Code" FontSize="15" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" VerticalAlignment="Center" Click="Button_Home"/>
+                        <Button Content="COST" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Cost"/>
+                        <Button Content="DRAW" Background="#FF222222" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" IsHitTestVisible="False"/>
+                        <Button Content="COLLECTION" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Collection"/>
+                        <Button Content="EXIT" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0 30 0 0" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Exit_Click"/>
+                        <Button Content="MINIMIZE" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Minimize"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border Grid.Row="0" HorizontalAlignment="Center" Width="130">
+                <Image Source="/111.png" Stretch="Fill" Margin="28,24,28,24" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="-1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+            </Border>
+            <!--Основное-->
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="21*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Background="White" BorderBrush="Black" BorderThickness="1">
+                    <Menu Background="White" HorizontalContentAlignment="Center" HorizontalAlignment="Center">
+                        <MenuItem Header="Файл" Foreground="Black" Height="40">
+                            <MenuItem x:Name="New" Header="Новый проект" Click="New_Click"/>
+                            <MenuItem x:Name="Open" Header="Открыть" Click="Open_Click"/>
+                            <MenuItem x:Name="Save" Header="Сохранить" Click="Save_Click"/>
+                        </MenuItem>
+                        <MenuItem Header="Фон" Foreground="Black" Height="40">
+                            <MenuItem x:Name="FBlack" Header="Чёрный" Click="FBlack_Click"/>
+                            <MenuItem x:Name="FWhite" Header="Белый" Click="FWhite_Click"/>
+                            <MenuItem x:Name="FRed" Header="Красный" Click="FRed_Click"/>
+                            <MenuItem x:Name="FOrange" Header="Оранжевый" Click="FOrange_Click"/>
+                            <MenuItem x:Name="FYellow" Header="Желтый" Click="FYellow_Click"/>
+                            <MenuItem x:Name="FGreen" Header="Зелёный" Click="FGreen_Click"/>
+                            <MenuItem x:Name="FBlueLight" Header="Голубой" Click="FBlueLight_Click"/>
+                            <MenuItem x:Name="FBlue" Header="Синий" Click="FBlue_Click"/>
+                            <MenuItem x:Name="FPurple" Header="Фиолетовый" Click="FPurple_Click"/>
+                        </MenuItem>
+                        <MenuItem Header="Размер" Foreground="Black" Height="40">
+                            <Slider x:Name="BrushRadiusSlider" Minimum="1" Maximum="100" Value="1" Width="150" Height="20" ValueChanged="SliderValueChanged"/>
+                        </MenuItem>
+                        <MenuItem Header="Цвет" Foreground="Black" Height="40">
+                            <MenuItem x:Name="Black" Header="Чёрный" Click="Black_Click"/>
+                            <MenuItem x:Name="White" Header="Белый" Click="White_Click"/>
+                            <MenuItem x:Name="Red" Header="Красный" Click="Red_Click"/>
+                            <MenuItem x:Name="Orange" Header="Оранжевый" Click="Orange_Click"/>
+                            <MenuItem x:Name="Yellow" Header="Желтый" Click="Yellow_Click"/>
+                            <MenuItem x:Name="Green" Header="Зелёный" Click="Green_Click"/>
+                            <MenuItem x:Name="BlueLight" Header="Голубой" Click="BlueLight_Click"/>
+                            <MenuItem x:Name="Blue" Header="Синий" Click="Blue_Click"/>
+                            <MenuItem x:Name="Purple" Header="Фиолетовый" Click="Purple_Click"/>
+                        </MenuItem>
+                        <MenuItem Header="Кисть" Foreground="Black" Height="40">
+                            <MenuItem x:Name="Pensil" Header="Карандаш" Click="Pensil_Click"/>
+                            <MenuItem x:Name="Brush" Header="Кисточка" Click="Brush_Click"/>
+                            <MenuItem x:Name="Eraser" Header="Стёрка" Click="Eraser_Click"/>
+                        </MenuItem>
+                        <MenuItem x:Name="Clear" Header="Очистить" Height="40" Click="Clear_Click"/>
+                    </Menu>
+                </Border>
+                <Border Grid.Row="1">
+                    <InkCanvas x:Name="canvas" Cursor="Pen"/>
+                </Border>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

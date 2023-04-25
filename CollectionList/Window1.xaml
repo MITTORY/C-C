@@ -1,0 +1,141 @@
+﻿<Window x:Class="CollectionList.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CollectionList"
+        mc:Ignorable="d"
+        Height="757" Width="1280" ResizeMode="NoResize" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="Transparent" Loaded="Window1_Loaded" Closing="Window1_Closing">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="boolToVis"/>
+    </Window.Resources>
+
+    <Border CornerRadius="35 35 35 35" Background="#FF222222" MouseDown="Border_MouseDown">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--Оглавление-->
+            <Border Grid.Row="0" Grid.Column="1" Background="#FF191919" CornerRadius="0 35 0 0">
+                <StackPanel>
+                    <Label Content="COST" FontSize="45" FontWeight="Bold" Foreground="White" FontFamily="Srbija Sans" Height="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <!--left-->
+            <Border Grid.Row="0" Grid.Column="0" Background="#FF191919" CornerRadius="35 0 0 35" Grid.RowSpan="2" >
+                <Grid>
+                    <StackPanel VerticalAlignment="Top" Height="88" Margin="0,120,0,0">
+                        <Grid Grid.Row="0" Grid.Column="0" Background="#FF222222" Margin="0, 0, 0, 90" Opacity="90" Height="90">
+                            <TextBlock Text="COLLECTION" Foreground="white" FontSize="18"  FontWeight="Bold" FontFamily="Srbija Sans" VerticalAlignment="Top" TextAlignment="Center" Margin="0,5,0,0"/>
+                            <TextBlock Text="&amp;" Foreground="white" FontSize="20" FontWeight="Bold" FontFamily="Srbija Sans" VerticalAlignment="Center" TextAlignment="Center" Margin="0,0,0,0"/>
+                            <TextBlock Text="CALCULATION" Foreground="white" FontSize="18" FontWeight="Bold" FontFamily="Srbija Sans" VerticalAlignment="Bottom" TextAlignment="Center" Margin="0,0,0,5"/>
+                        </Grid>
+                    </StackPanel>
+                    <!--МенюСлева-->
+                    <StackPanel Margin="0,300,0,219" HorizontalAlignment="Center">
+                        <Button Content="HOME" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontWeight="Bold" FontFamily="Cascadia Code" FontSize="15" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" VerticalAlignment="Center" Click="Button_Home"/>
+                        <Button Content="COST" Background="#FF222222" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="14" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" IsHitTestVisible="False"/>
+                        <Button Content="DRAW" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="14" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Draw"/>
+                        <Button Content="COLLECTION" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Collection"/>
+                        <Button Content="EXIT" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0 30 0 0" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Exit_Click"/>
+                        <Button Content="MINIMIZE" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Minimize"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="0" Grid.Row="0" Background="#FF191919" CornerRadius="35 0 0 0">
+                <Image Source="/111.png" Stretch="Fill" Margin="28,24,28,24" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="-1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+            </Border>
+
+            <!--Основное-->
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="712*"/>
+                    <ColumnDefinition Width="425*"/>
+                    <ColumnDefinition Width="13*"/>
+                </Grid.ColumnDefinitions>
+                <ListBox x:Name="listBoxCost" HorizontalAlignment="Left" Width="438" Background="white" FontSize="15"  FontWeight="Bold" FontFamily="Srbija Sans" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="3" Margin="712,0,0,0" MouseDoubleClick="listBox1_DoubleClick"/>
+                <Border>
+                    <TextBlock x:Name="label1" Text="Изначальное состояние" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="white" FontSize="22"  FontWeight="Bold" FontFamily="Srbija Sans" TextDecorations="Underline" Margin="70,10,0,0"/>
+                </Border>
+                <Border>
+                    <TextBlock x:Name="label2" Text="Затраты" VerticalAlignment="Top" HorizontalAlignment="Right" Foreground="white" FontSize="22"  FontWeight="Bold" FontFamily="Srbija Sans" TextDecorations="Underline" Margin="0,10,100,0"/>
+                </Border>
+                <Border>
+                    <TextBox x:Name="textBox1" Text="" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="20" HorizontalAlignment="Left" FontFamily="Srbija Sans" VerticalAlignment="Top" Width="375" Height="40" Margin="10,50,0,0" BorderBrush="#89FFFFFF"/>
+                </Border>
+                <Border>
+                    <Button x:Name="button2" Click="button2_Click" Content="Задать" FontFamily="Srbija Sans" FontWeight="Bold" Margin="10,105,327,492" Height="40" Style="{StaticResource MaterialDesignOutlinedLightButton}"/>
+                </Border>
+                <Border>
+                    <Button x:Name="Enter_button" Click="button3_Click" Content="Вывод" FontFamily="Srbija Sans" FontWeight="Bold" Margin="10,155,327,442" Height="40" Style="{StaticResource MaterialDesignOutlinedLightButton}"/>
+                </Border>
+                <Border>
+                    <TextBox x:Name="textBox2" Text="" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="20" HorizontalAlignment="Left" FontFamily="Srbija Sans" VerticalAlignment="Top" Width="280" Height="40" Margin="422,50,0,0" BorderBrush="#89FFFFFF"/>
+                </Border>
+                <Border>
+                    <TextBox x:Name="textBox3" Text="" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="20" HorizontalAlignment="Left" FontFamily="Srbija Sans" VerticalAlignment="Top" Width="280" Height="40" Margin="422,105,0,0" BorderBrush="#89FFFFFF"/>
+                </Border>
+                <Border>
+                    <Button x:Name="Calculation_button" Click="button1_Click" Content="Расчёт" FontFamily="Srbija Sans" FontWeight="Bold" Margin="422,155,10,442" Height="40" Width="280" Style="{StaticResource MaterialDesignOutlinedLightButton}"/>
+                </Border>
+                <Border>
+                    <TextBlock Text="Текущее состояние" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="white" FontSize="22"  FontWeight="Bold" FontFamily="Srbija Sans" TextDecorations="Underline" Margin="91,220,0,0"/>
+                </Border>
+                <Border>
+                    <TextBlock Text="Сумма затрат" VerticalAlignment="Top" Foreground="white" FontSize="22"  FontWeight="Bold" FontFamily="Srbija Sans" TextDecorations="Underline" Margin="484,220,0,0" HorizontalAlignment="Left"/>
+                </Border>
+                <Border>
+                    <TextBox x:Name="textBox5" Text="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="20" FontFamily="Srbija Sans" VerticalAlignment="Top" Height="40" Margin="10,253,328,0" IsReadOnly="True" BorderBrush="#89FFFFFF"/>
+                </Border>
+                <Border>
+                    <TextBox x:Name="textBox6" Text="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="20" FontFamily="Srbija Sans" VerticalAlignment="Top" Height="40" Margin="423,253,10,344" IsReadOnly="True" BorderBrush="#89FFFFFF"/>
+                </Border>
+                <Border>
+                    <TextBlock Text="Редактирование" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="white" FontSize="22"  FontWeight="Bold" FontFamily="Srbija Sans" TextDecorations="Underline"/>
+                </Border>
+                <Border>
+                    <Button x:Name="Up_button" Click="Up_button_Click" Content="Выше" FontFamily="Srbija Sans" FontWeight="Bold" Margin="76,345,356,252" Height="40" Width="280" Style="{StaticResource MaterialDesignOutlinedLightButton}"/>
+                </Border>
+                <Border>
+                    <Button x:Name="Delete_button" Click="Delete_button_Click" Content="Удалить" FontFamily="Srbija Sans" FontWeight="Bold" Margin="366,345,66,252" Height="40" Width="280" Style="{StaticResource MaterialDesignOutlinedLightButton}"/>
+                </Border>
+                <Border>
+                    <Button x:Name="Down_button" Click="Down_button_Click" Content="Ниже" FontFamily="Srbija Sans" FontWeight="Bold" Margin="76,397,356,200" Height="40" Width="280" Style="{StaticResource MaterialDesignOutlinedLightButton}"/>
+                </Border>
+                <Border>
+                    <Button x:Name="Clear_button" Click="Clear_button_Click" Content="Очистить" FontFamily="Srbija Sans" FontWeight="Bold" Margin="366,397,66,200" Height="40" Width="280" Style="{StaticResource MaterialDesignOutlinedLightButton}"/>
+                </Border>
+                <Border>
+                    <TextBox x:Name="textBox4" Text="" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="20" HorizontalAlignment="Center" FontFamily="Srbija Sans" VerticalAlignment="Top" Width="410" Height="40" Margin="0,456,0,0" IsEnabled="False" BorderBrush="#89FFFFFF"/>
+                </Border>
+                <Border>
+                    <Button x:Name="button4" Click="button4_Click" Content="Сохранить" FontFamily="Srbija Sans" FontWeight="Bold" Margin="216,516,216,80" Height="40" Width="280" Style="{StaticResource MaterialDesignOutlinedLightButton}" IsEnabled="False"/>
+                </Border>
+                <Border>
+                    <Button x:Name="Save_button" Click="Save_button_Click" Content="Экспорт" FontFamily="Srbija Sans" FontWeight="Bold" Margin="10,566,356,31" Height="40" Style="{StaticResource MaterialDesignOutlinedLightButton}" IsEnabled="False"/>
+                </Border>
+                <Border>
+                    <Button x:Name="Load_button" Click="Load_button_Click" Content="Импорт" FontFamily="Srbija Sans" FontWeight="Bold" Margin="372,566,10,31" Height="40" Style="{StaticResource MaterialDesignOutlinedLightButton}"/>
+                </Border>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

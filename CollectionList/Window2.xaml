@@ -1,0 +1,95 @@
+﻿<Window x:Class="CollectionList.Window2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CollectionList"
+        mc:Ignorable="d"
+        Height="757" Width="1280" ResizeMode="NoResize" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="Transparent" Loaded="Window2_Loaded" Closing="Window2_Closing">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="boolToVis"/>
+    </Window.Resources>
+
+    <Border CornerRadius="35 35 35 35" Background="#FF222222" MouseDown="Border_MouseDown">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--Оглавление-->
+            <Border Grid.Row="0" Grid.Column="1" Background="#FF191919" CornerRadius="0 35 0 0">
+                <StackPanel>
+                    <Label Content="COLLECTION" FontSize="45" FontWeight="Bold" Foreground="White" FontFamily="Srbija Sans" Height="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <!--left-->
+            <Border Grid.Row="0" Grid.Column="0" Background="#FF191919" CornerRadius="35 0 0 35" Grid.RowSpan="2" >
+                <Grid>
+                    <StackPanel VerticalAlignment="Top" Height="88" Margin="0,120,0,0">
+                        <Grid Grid.Row="0" Grid.Column="0" Background="#FF222222" Margin="0, 0, 0, 90" Opacity="90" Height="90">
+                            <TextBlock Text="COLLECTION" Foreground="white" FontSize="18"  FontWeight="Bold" FontFamily="Srbija Sans" VerticalAlignment="Top" TextAlignment="Center" Margin="0,5,0,0"/>
+                            <TextBlock Text="&amp;" Foreground="white" FontSize="20" FontWeight="Bold" FontFamily="Srbija Sans" VerticalAlignment="Center" TextAlignment="Center" Margin="0,0,0,0"/>
+                            <TextBlock Text="CALCULATION" Foreground="white" FontSize="18" FontWeight="Bold" FontFamily="Srbija Sans" VerticalAlignment="Bottom" TextAlignment="Center" Margin="0,0,0,5"/>
+                        </Grid>
+                    </StackPanel>
+                    <!--МенюСлева-->
+                    <StackPanel Margin="0,300,0,199" HorizontalAlignment="Center">
+                        <Button Content="HOME" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontWeight="Bold" FontFamily="Cascadia Code" FontSize="15" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" VerticalAlignment="Center" Click="Button_Home"/>
+                        <Button Content="COST" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="14" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Cost"/>
+                        <Button Content="DRAW" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="14" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Draw"/>
+                        <Button Content="COLLECTION" Background="#FF222222" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" IsHitTestVisible="False"/>
+                        <Button Content="EXIT" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0 30 0 0" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Exit_Click"/>
+                        <Button Content="MINIMIZE" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Minimize"/>
+
+                    </StackPanel>
+                </Grid>
+            </Border>
+            
+            <Border Grid.Column="0" Grid.Row="0">
+                <Image Source="/111.png" Stretch="Fill" Margin="28,24,28,24" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="-1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+            </Border>
+            <!--Основное-->
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <ListBox x:Name="listBoxCost1" Margin="0 0 0 0" Background="white" FontSize="15"  FontWeight="Bold" FontFamily="Srbija Sans" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1" MouseDoubleClick="listBoxCost_MouseDoubleClick"/>
+                <Grid Grid.Column="0">
+                    <ComboBox x:Name="ComboBox" VerticalAlignment="Top" Margin="5,10,5,0" FontSize="25" FontFamily="Srbija Sans" Background="white" HorizontalContentAlignment="Center" BorderBrush="#89FFFFFF" Height="35"/>
+                    <Button x:Name="Clear" Margin="448,68,5,537" Content="ОЧИСТИТЬ" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Click="Clear_Click"/>
+                    <TextBlock Text="Добавить категорию" Foreground="white" TextDecorations="Underline" HorizontalAlignment="Center" Margin="0,73,0,542" FontSize="20" FontWeight="Bold" FontFamily="Srbija Sans"/>
+                    <TextBox x:Name="CategorBox" HorizontalAlignment="Center" Margin="0,105,0,498" Width="575" FontSize="20" Foreground="white" FontFamily="Srbija Sans" HorizontalContentAlignment="Center" BorderBrush="#89FFFFFF"/>
+                    <Button x:Name="AddCategor" Margin="5,162,5,443" Content="ДОБАВИТЬ КАТЕГОРИЮ" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Click="AddCategor_Click"/>
+                    <Button x:Name="AddRazdel" Margin="5,199,5,406" Content="РАЗДЕЛИТЕЛЬ" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Click="AddRazdel_Click"/>
+                    <TextBlock Text="Редактирование" Foreground="white" TextDecorations="Underline" HorizontalAlignment="Left" Margin="198,254,0,348" FontSize="20" FontWeight="Bold" FontFamily="Srbija Sans"/>
+                    <Button Click="Up_Click" x:Name="Up" Content="ВЫШЕ" Foreground="white" Height="40" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Margin="5,286,393,311"/>
+                    <Button Click="Down_Click" x:Name="Down" Margin="5,356,393,241" Content="НИЖЕ" Foreground="white" Height="40" Style="{StaticResource MaterialDesignOutlinedDarkButton}"/>
+                    <Button Click="ClearRed_Click" x:Name="ClearRed" Content="ОЧИСТИТЬ" Height="40" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Margin="198,356,208,241"/>
+                    <Button Click="DeleteRed_Click" x:Name="DeleteRed" Content="УДАЛИТЬ" Height="40" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Margin="198,286,208,311"/>
+                    <Button Click="OpenRed_Click" x:Name="OpenRed" Content="ОТКРЫТЬ" Height="40" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Margin="392,286,5,311"/>
+                    <Button Click="SaveRed_Click" x:Name="SaveRed" Content="СОХРАНИТЬ" Height="40" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Margin="392,356,5,241"/>
+                    <TextBox x:Name="TextBox" Margin="0,406,0,47" HorizontalAlignment="Center" Width="575" FontSize="25" Foreground="white" FontFamily="Srbija Sans" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="#89FFFFFF"/>
+                    <Button Click="AddBox_Click" x:Name="AddBox" Content="ДОБАВИТЬ" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Margin="5,595,292,10"/>
+                    <Button Click="SaveBox_Click" x:Name="SaveBox" Content="ИЗМЕНИТЬ" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" IsEnabled="False" Margin="292,595,5,10"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
