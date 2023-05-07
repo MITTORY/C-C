@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CollectionList"
         mc:Ignorable="d"
-        Height="1000" Width="1280" ResizeMode="NoResize" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="Transparent">
+        Height="757" Width="1280" ResizeMode="NoResize" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="Transparent">
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="boolToVis"/>
@@ -25,7 +25,16 @@
             <!--Оглавление-->
             <Grid Grid.Row="0" Grid.Column="1">
                 <Border Background="#FF191919" CornerRadius="0 35 0 0">
-                    <Label Content="DRAW" FontSize="45" FontWeight="Bold" Foreground="White" FontFamily="Srbija Sans" Height="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label Content="DRAW" FontSize="45" FontWeight="Bold" FontFamily="Srbija Sans" Height="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                        <Label.Foreground>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#008AFF" Offset="0.0"/>
+                                <GradientStop Color="#55B1FF" Offset="0.25"/>
+                                <GradientStop Color="#AAD5FF" Offset="0.5"/>
+                                <GradientStop Color="#008AFF" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Label.Foreground>
+                    </Label>
                 </Border>
             </Grid>
 
@@ -40,13 +49,22 @@
                         </Grid>
                         <!--МенюСлева-->
                     </StackPanel>
-                    <StackPanel Margin="0,300,0,402" HorizontalAlignment="Center">
-                        <Button Content="HOME" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontWeight="Bold" FontFamily="Cascadia Code" FontSize="15" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" VerticalAlignment="Center" Click="Button_Home"/>
-                        <Button Content="COST" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Cost"/>
-                        <Button Content="DRAW" Background="#FF222222" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" IsHitTestVisible="False"/>
-                        <Button Content="COLLECTION" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Collection"/>
-                        <Button Content="EXIT" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0 30 0 0" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Exit_Click"/>
-                        <Button Content="MINIMIZE" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Minimize"/>
+                    <StackPanel Margin="0,300,0,225" HorizontalAlignment="Center">
+                        <Button Content="HOME" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontWeight="Bold" FontFamily="Srbija Sans" FontSize="15" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" VerticalAlignment="Center" Click="Button_Home"/>
+                        <Button Content="COST" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Srbija Sans" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Cost"/>
+                        <Button Content="DRAW" Background="#FF222222" BorderThickness="1" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Srbija Sans" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="128" IsHitTestVisible="False">
+                            <Button.BorderBrush>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#008AFF" Offset="0.0"/>
+                                    <GradientStop Color="#55B1FF" Offset="0.25"/>
+                                    <GradientStop Color="#AAD5FF" Offset="0.5"/>
+                                    <GradientStop Color="#008AFF" Offset="1.0"/>
+                                </LinearGradientBrush>
+                            </Button.BorderBrush>
+                        </Button>
+                        <Button Content="COLLECTION" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Srbija Sans" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Collection"/>
+                        <Button Content="EXIT" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0 30 0 0" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Srbija Sans" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Exit_Click"/>
+                        <Button Content="MINIMIZE" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Srbija Sans" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Minimize"/>
                     </StackPanel>
                 </Grid>
             </Border>
@@ -70,12 +88,13 @@
                 </Grid.RowDefinitions>
                 <Border Grid.Row="0" Background="White" BorderBrush="Black" BorderThickness="1">
                     <Menu Background="White" HorizontalContentAlignment="Center" HorizontalAlignment="Center">
-                        <MenuItem Header="Файл" Foreground="Black" Height="40">
+                        <MenuItem Header="Файл" FontFamily="Srbija Sans" Foreground="Black" Height="27">
                             <MenuItem x:Name="New" Header="Новый проект" Click="New_Click"/>
                             <MenuItem x:Name="Open" Header="Открыть" Click="Open_Click"/>
                             <MenuItem x:Name="Save" Header="Сохранить" Click="Save_Click"/>
+                            <MenuItem x:Name="NewImage" Header="Удалить изображение" Click="NewImage_Click"/>
                         </MenuItem>
-                        <MenuItem Header="Фон" Foreground="Black" Height="40">
+                        <MenuItem Header="Фон" FontFamily="Srbija Sans" Foreground="Black" Height="27">
                             <MenuItem x:Name="FBlack" Header="Чёрный" Click="FBlack_Click"/>
                             <MenuItem x:Name="FWhite" Header="Белый" Click="FWhite_Click"/>
                             <MenuItem x:Name="FRed" Header="Красный" Click="FRed_Click"/>
@@ -86,10 +105,10 @@
                             <MenuItem x:Name="FBlue" Header="Синий" Click="FBlue_Click"/>
                             <MenuItem x:Name="FPurple" Header="Фиолетовый" Click="FPurple_Click"/>
                         </MenuItem>
-                        <MenuItem Header="Размер" Foreground="Black" Height="40">
+                        <MenuItem Header="Размер" FontFamily="Srbija Sans" Foreground="Black" Height="27">
                             <Slider x:Name="BrushRadiusSlider" Minimum="1" Maximum="100" Value="1" Width="150" Height="20" ValueChanged="SliderValueChanged"/>
                         </MenuItem>
-                        <MenuItem Header="Цвет" Foreground="Black" Height="40">
+                        <MenuItem Header="Цвет" FontFamily="Srbija Sans" Foreground="Black" Height="27">
                             <MenuItem x:Name="Black" Header="Чёрный" Click="Black_Click"/>
                             <MenuItem x:Name="White" Header="Белый" Click="White_Click"/>
                             <MenuItem x:Name="Red" Header="Красный" Click="Red_Click"/>
@@ -100,12 +119,12 @@
                             <MenuItem x:Name="Blue" Header="Синий" Click="Blue_Click"/>
                             <MenuItem x:Name="Purple" Header="Фиолетовый" Click="Purple_Click"/>
                         </MenuItem>
-                        <MenuItem Header="Кисть" Foreground="Black" Height="40">
+                        <MenuItem Header="Кисть" FontFamily="Srbija Sans" Foreground="Black" Height="27">
                             <MenuItem x:Name="Pensil" Header="Карандаш" Click="Pensil_Click"/>
                             <MenuItem x:Name="Brush" Header="Кисточка" Click="Brush_Click"/>
                             <MenuItem x:Name="Eraser" Header="Стёрка" Click="Eraser_Click"/>
                         </MenuItem>
-                        <MenuItem x:Name="Clear" Header="Очистить" Height="40" Click="Clear_Click"/>
+                        <MenuItem x:Name="Clear" FontFamily="Srbija Sans" Header="Очистить" Height="27" Click="Clear_Click" Foreground="Black"/>
                     </Menu>
                 </Border>
                 <Border Grid.Row="1">

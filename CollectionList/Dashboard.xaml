@@ -7,7 +7,7 @@
         xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks" 
         x:Class="CollectionList.Dashboard"
         mc:Ignorable="d"
-        Height="757" Width="1280" ResizeMode="NoResize" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="Transparent">
+        Height="757" Width="1280" ResizeMode="NoResize" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="Transparent" Closing="Dashboard_Closing" Loaded="Dashboard_Loaded">
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="boolToVis"/>
@@ -27,7 +27,16 @@
             <!--Оглавление-->
             <Border Grid.Row="0" Grid.Column="1" Background="#FF191919" CornerRadius="0 35 0 0">
                 <StackPanel>
-                    <Label Content="HOME" FontSize="45" FontWeight="Bold" Foreground="White" FontFamily="Srbija Sans" Height="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label Content="HOME" FontSize="45" FontWeight="Bold" FontFamily="Srbija Sans" Height="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                        <Label.Foreground>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#FF0000" Offset="0.0"/>
+                                <GradientStop Color="#FF5555" Offset="0.25"/>
+                                <GradientStop Color="#FFAAAA" Offset="0.5"/>
+                                <GradientStop Color="#FF0000" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Label.Foreground>
+                    </Label>
                 </StackPanel>
             </Border>
 
@@ -43,12 +52,21 @@
                     </StackPanel>
                     <!--МенюСлева-->
                     <StackPanel Margin="0,300,0,221" HorizontalAlignment="Center">
-                        <Button Content="HOME" Background="#FF222222" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontWeight="Bold" FontFamily="Cascadia Code" FontSize="15" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" VerticalAlignment="Center" IsHitTestVisible="False"/>
-                        <Button Content="COST" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="14" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Cost"/>
-                        <Button Content="DRAW" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="14" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Draw"/>
-                        <Button Content="COLLECTION" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Collection"/>
-                        <Button Content="EXIT" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0 30 0 0" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Exit_Click"/>
-                        <Button Content="MINIMIZE" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Minimize"/>
+                        <Button Content="HOME" BorderThickness="1" Background="#FF222222" Foreground="#DDFFFFFF" FontWeight="Bold" FontFamily="Srbija Sans" FontSize="15" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="128" IsHitTestVisible="False">
+                            <Button.BorderBrush>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#FF0000" Offset="0.0"/>
+                                    <GradientStop Color="#FF5555" Offset="0.25"/>
+                                    <GradientStop Color="#FFAAAA" Offset="0.5"/>
+                                    <GradientStop Color="#FF0000" Offset="1.0"/>
+                                </LinearGradientBrush>
+                            </Button.BorderBrush>
+                        </Button>
+                        <Button Content="COST" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="14" FontWeight="Bold" FontFamily="Srbija Sans" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Cost"/>
+                        <Button Content="DRAW" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="14" FontWeight="Bold" FontFamily="Srbija Sans" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Draw"/>
+                        <Button Content="COLLECTION" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Srbija Sans" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Collection"/>
+                        <Button Content="EXIT" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0 30 0 0" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Srbija Sans" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Exit_Click"/>
+                        <Button Content="MINIMIZE" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Srbija Sans" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Minimize"/>
                     </StackPanel>
                 </Grid>
             </Border>
@@ -76,12 +94,26 @@
                 </Grid.RowDefinitions>
                 <TextBlock Text="ПРИЛОЖЕНИЕ СОЗДАНО" FontWeight="Bold" FontFamily="Srbija Sans" Foreground="White" FontSize="50" HorizontalAlignment="Left" Margin="249,32,0,116" TextDecorations="OverLine" Grid.ColumnSpan="2" Width="650"/>
                 <TextBlock Text="для" FontWeight="Bold" FontFamily="Srbija Sans" Foreground="White" FontSize="45" HorizontalAlignment="Left" Margin="533,86,0,64" Width="84" Grid.ColumnSpan="2"/>
-                <TextBlock Text="Айдара и Беллы" FontWeight="Bold" FontFamily="Srbija Sans" Foreground="White" FontSize="45" HorizontalAlignment="Left" Margin="389,138,0,10" Grid.ColumnSpan="2" Width="371" TextDecorations="Underline"/>
+                <TextBlock Text="Айдара и Беллы" FontWeight="Bold" FontFamily="Srbija Sans" Foreground="White" FontSize="45" HorizontalAlignment="Left" Margin="389,138,0,10" Grid.ColumnSpan="2" Width="371" TextDecorations="Underline" Cursor="Hand"/>
                 <TextBlock Text="Айдар" FontWeight="Bold" FontFamily="Srbija Sans" Foreground="White" Margin="0,44,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="45" TextDecorations="Underline" Grid.Row="1" Height="49" Width="144"/>
                 <TextBlock Text="Белла" FontWeight="Bold" FontFamily="Srbija Sans" Foreground="White" Margin="0,45,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="45" TextDecorations="Underline" Grid.Row="1" Grid.Column="1" Height="49" Width="138"/>
-                <Image x:Name="Bella" Source="/BELLA.jpg" Margin="161,113,160,86" Stretch="Fill" Grid.Row="1" Grid.Column="1"/>
+                <Image x:Name="Bella" Source="/BELLA.jpg" Margin="161,111,160,87" Stretch="Fill" Grid.Row="1" Grid.Column="1"/>
                 <Image x:Name="Aydar" Source="/aydar.jpg" Margin="180,111,181,87" Stretch="Fill" Grid.Row="1"/>
-                <Image x:Name="LOVE"  Margin="485,129,484,129" Stretch="Fill" Source="/love.png" Grid.Row="1" Grid.ColumnSpan="2"/>
+                <Button x:Name="LOVE" Click="LOVE_Click"  Margin="475,111,470,141" Height="175"  Grid.Row="1" Grid.ColumnSpan="2" Cursor="Hand" BorderBrush="#00000000" Foreground="#00000000">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/love.png"/>
+                    </Button.Background>
+                </Button>
+                <TextBlock Text="Белла" FontWeight="Bold" FontFamily="Srbija Sans" Foreground="White" Margin="0,45,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="45" TextDecorations="Underline" Grid.Row="1" Grid.Column="1" Height="49" Width="138"/>
+                <TextBlock Text="Белла" FontWeight="Bold" FontFamily="Srbija Sans" Foreground="White" Margin="0,45,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="45" TextDecorations="Underline" Grid.Row="1" Grid.Column="1" Height="49" Width="138"/>
+                <TextBlock Text="Дата" FontWeight="Bold" FontFamily="Srbija Sans" Foreground="White" Margin="0,357,0,0" TextAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="25" TextDecorations="Underline" Grid.Row="1" Height="30" Width="214"/>
+                <TextBlock  x:Name="TextBlock1" Text="" FontFamily="Srbija Sans" Foreground="White" Margin="0,391,0,0" TextAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="17" Grid.Row="1" Height="20" Width="214"/>
+                <TextBlock Text="Дни" FontWeight="Bold" FontFamily="Srbija Sans" Foreground="White" Margin="0,357,0,0" TextAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="25" TextDecorations="Underline" Grid.Row="1" Height="30" Width="256" Grid.Column="1"/>
+                <TextBlock x:Name="TextBlock2"  Text="" FontFamily="Srbija Sans" Foreground="White" Margin="0,391,0,0" TextAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="17" Grid.Row="1" Height="20" Width="254" Grid.Column="1"/>
+                <ProgressBar x:Name="ProgressBar" Value="0" Maximum="100" Minimum="0" VerticalAlignment="Top"  HorizontalAlignment="Left" Grid.Row="1" Height="30" Margin="475,293,0,0" Grid.ColumnSpan="2" Width="200"/>
+                <TextBlock x:Name="ProgressText" Text="0%" FontWeight="Bold" FontFamily="Srbija Sans" Foreground="White" Margin="475,327,0,0" TextAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="15" Grid.Row="1" Height="17" Width="199" Grid.ColumnSpan="2"/>
+                <TextBlock Text="Количество усилений" FontWeight="Bold" FontFamily="Srbija Sans" Foreground="White" Margin="475,362,0,0" TextAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="17" TextDecorations="Underline" Grid.Row="1" Height="18" Width="200" Grid.ColumnSpan="2"/>
+                <TextBlock x:Name="loveCountText" Text="0" FontWeight="Bold" FontFamily="Srbija Sans" Foreground="White" Margin="475,388,0,0" TextAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20" Grid.Row="1" Height="17" Width="200" Grid.ColumnSpan="2"/>
             </Grid>
         </Grid>
     </Border>

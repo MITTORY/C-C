@@ -25,7 +25,15 @@
             <!--Оглавление-->
             <Border Grid.Row="0" Grid.Column="1" Background="#FF191919" CornerRadius="0 35 0 0">
                 <StackPanel>
-                    <Label Content="COLLECTION" FontSize="45" FontWeight="Bold" Foreground="White" FontFamily="Srbija Sans" Height="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label Content="COLLECTION" FontSize="45" FontWeight="Bold" FontFamily="Srbija Sans" Height="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                        <Label.Foreground>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#3BD30B" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Label.Foreground>
+                    </Label>
                 </StackPanel>
             </Border>
 
@@ -41,12 +49,20 @@
                     </StackPanel>
                     <!--МенюСлева-->
                     <StackPanel Margin="0,300,0,199" HorizontalAlignment="Center">
-                        <Button Content="HOME" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontWeight="Bold" FontFamily="Cascadia Code" FontSize="15" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" VerticalAlignment="Center" Click="Button_Home"/>
-                        <Button Content="COST" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="14" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Cost"/>
-                        <Button Content="DRAW" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="14" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Draw"/>
-                        <Button Content="COLLECTION" Background="#FF222222" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" IsHitTestVisible="False"/>
-                        <Button Content="EXIT" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0 30 0 0" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Exit_Click"/>
-                        <Button Content="MINIMIZE" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Cascadia Code" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Minimize"/>
+                        <Button Content="HOME" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontWeight="Bold" FontFamily="Srbija Sans" FontSize="15" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" VerticalAlignment="Center" Click="Button_Home"/>
+                        <Button Content="COST" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="14" FontWeight="Bold" FontFamily="Srbija Sans" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Cost"/>
+                        <Button Content="DRAW" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="14" FontWeight="Bold" FontFamily="Srbija Sans" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Draw"/>
+                        <Button Content="COLLECTION" Background="#FF222222" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Srbija Sans" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="128" IsHitTestVisible="False" BorderThickness="1">
+                            <Button.BorderBrush>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                    <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                    <GradientStop Color="#278C07" Offset="1.0"/>
+                                </LinearGradientBrush>
+                            </Button.BorderBrush>
+                        </Button>
+                        <Button Content="EXIT" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0 30 0 0" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Srbija Sans" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Exit_Click"/>
+                        <Button Content="MINIMIZE" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DDFFFFFF" FontSize="15" FontWeight="Bold" FontFamily="Srbija Sans" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Center" Width="130" Click="Button_Minimize"/>
 
                     </StackPanel>
                 </Grid>
@@ -72,22 +88,182 @@
                 </Grid.ColumnDefinitions>
                 <ListBox x:Name="listBoxCost1" Margin="0 0 0 0" Background="white" FontSize="15"  FontWeight="Bold" FontFamily="Srbija Sans" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1" MouseDoubleClick="listBoxCost_MouseDoubleClick"/>
                 <Grid Grid.Column="0">
-                    <ComboBox x:Name="ComboBox" VerticalAlignment="Top" Margin="5,10,5,0" FontSize="25" FontFamily="Srbija Sans" Background="white" HorizontalContentAlignment="Center" BorderBrush="#89FFFFFF" Height="35"/>
-                    <Button x:Name="Clear" Margin="448,68,5,537" Content="ОЧИСТИТЬ" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Click="Clear_Click"/>
-                    <TextBlock Text="Добавить категорию" Foreground="white" TextDecorations="Underline" HorizontalAlignment="Center" Margin="0,73,0,542" FontSize="20" FontWeight="Bold" FontFamily="Srbija Sans"/>
-                    <TextBox x:Name="CategorBox" HorizontalAlignment="Center" Margin="0,105,0,498" Width="575" FontSize="20" Foreground="white" FontFamily="Srbija Sans" HorizontalContentAlignment="Center" BorderBrush="#89FFFFFF"/>
-                    <Button x:Name="AddCategor" Margin="5,162,5,443" Content="ДОБАВИТЬ КАТЕГОРИЮ" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Click="AddCategor_Click"/>
-                    <Button x:Name="AddRazdel" Margin="5,199,5,406" Content="РАЗДЕЛИТЕЛЬ" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Click="AddRazdel_Click"/>
+                    <ComboBox x:Name="ComboBox" VerticalAlignment="Top" Margin="5,10,5,0" FontSize="25" FontFamily="Srbija Sans" Background="white" BorderThickness="2" HorizontalContentAlignment="Center" Height="35">
+                        <ComboBox.BorderBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#278C07" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </ComboBox.BorderBrush>
+                    </ComboBox>
+                    <Button x:Name="Clear" Margin="448,66,5,539" Content="ОЧИСТИТЬ" FontFamily="Srbija Sans" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Click="Clear_Click">
+                        <Button.BorderBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#278C07" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.BorderBrush>
+                    </Button>
+                    <TextBlock Text="Добавить категорию" Foreground="white" TextDecorations="Underline" HorizontalAlignment="Center" Margin="0,71,0,544" FontSize="20" FontWeight="Bold" FontFamily="Srbija Sans"/>
+                    <TextBox x:Name="CategorBox" HorizontalAlignment="Center" Margin="0,105,0,498" Width="565" FontSize="20" Foreground="white" FontFamily="Srbija Sans" HorizontalContentAlignment="Center">
+                        <TextBox.SelectionBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#278C07" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </TextBox.SelectionBrush>
+
+                        <TextBox.SelectionTextBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#278C07" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </TextBox.SelectionTextBrush>
+
+                        <TextBox.BorderBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#278C07" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </TextBox.BorderBrush>
+
+                        <TextBox.CaretBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#278C07" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </TextBox.CaretBrush>
+                    </TextBox>
+                    <Button x:Name="AddCategor" Margin="5,144,5,461" FontFamily="Srbija Sans" Content="ДОБАВИТЬ КАТЕГОРИЮ" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Click="AddCategor_Click">
+                        <Button.BorderBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#278C07" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.BorderBrush>
+                    </Button>
+                    <Button x:Name="AddRazdel" Margin="5,199,5,406" FontFamily="Srbija Sans" Content="РАЗДЕЛИТЕЛЬ" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Click="AddRazdel_Click">
+                        <Button.BorderBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#278C07" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.BorderBrush>
+                    </Button>
                     <TextBlock Text="Редактирование" Foreground="white" TextDecorations="Underline" HorizontalAlignment="Left" Margin="198,254,0,348" FontSize="20" FontWeight="Bold" FontFamily="Srbija Sans"/>
-                    <Button Click="Up_Click" x:Name="Up" Content="ВЫШЕ" Foreground="white" Height="40" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Margin="5,286,393,311"/>
-                    <Button Click="Down_Click" x:Name="Down" Margin="5,356,393,241" Content="НИЖЕ" Foreground="white" Height="40" Style="{StaticResource MaterialDesignOutlinedDarkButton}"/>
-                    <Button Click="ClearRed_Click" x:Name="ClearRed" Content="ОЧИСТИТЬ" Height="40" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Margin="198,356,208,241"/>
-                    <Button Click="DeleteRed_Click" x:Name="DeleteRed" Content="УДАЛИТЬ" Height="40" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Margin="198,286,208,311"/>
-                    <Button Click="OpenRed_Click" x:Name="OpenRed" Content="ОТКРЫТЬ" Height="40" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Margin="392,286,5,311"/>
-                    <Button Click="SaveRed_Click" x:Name="SaveRed" Content="СОХРАНИТЬ" Height="40" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Margin="392,356,5,241"/>
-                    <TextBox x:Name="TextBox" Margin="0,406,0,47" HorizontalAlignment="Center" Width="575" FontSize="25" Foreground="white" FontFamily="Srbija Sans" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="#89FFFFFF"/>
-                    <Button Click="AddBox_Click" x:Name="AddBox" Content="ДОБАВИТЬ" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Margin="5,595,292,10"/>
-                    <Button Click="SaveBox_Click" x:Name="SaveBox" Content="ИЗМЕНИТЬ" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" IsEnabled="False" Margin="292,595,5,10"/>
+                    <Button Click="Up_Click" x:Name="Up" Content="ВЫШЕ" FontFamily="Srbija Sans" Foreground="white" Height="40" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Margin="5,286,393,311">
+                        <Button.BorderBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#278C07" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.BorderBrush>
+                    </Button>
+                    <Button Click="Down_Click" x:Name="Down" Margin="5,356,393,241" FontFamily="Srbija Sans" Content="НИЖЕ" Foreground="white" Height="40" Style="{StaticResource MaterialDesignOutlinedDarkButton}">
+                        <Button.BorderBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#278C07" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.BorderBrush>
+                    </Button>
+                    <Button Click="ClearRed_Click" x:Name="ClearRed" Content="ОЧИСТИТЬ" FontFamily="Srbija Sans" Height="40" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Margin="198,356,208,241">
+                        <Button.BorderBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#278C07" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.BorderBrush>
+                    </Button>
+                    <Button Click="DeleteRed_Click" x:Name="DeleteRed" Content="УДАЛИТЬ" FontFamily="Srbija Sans" Height="40" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Margin="198,286,208,311">
+                        <Button.BorderBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#278C07" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.BorderBrush>
+                    </Button>
+                    <Button Click="OpenRed_Click" x:Name="OpenRed" Content="ОТКРЫТЬ" FontFamily="Srbija Sans" Height="40" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Margin="392,286,5,311">
+                        <Button.BorderBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#278C07" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.BorderBrush>
+                    </Button>
+                    <Button Click="SaveRed_Click" x:Name="SaveRed" Content="СОХРАНИТЬ" FontFamily="Srbija Sans" Height="40" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Margin="392,356,5,241">
+                        <Button.BorderBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#278C07" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.BorderBrush>
+                    </Button>
+                    <TextBox x:Name="TextBox" Margin="0,406,0,47" HorizontalAlignment="Center" Width="565" FontSize="25" Foreground="white" FontFamily="Srbija Sans" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                        <TextBox.SelectionBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#278C07" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </TextBox.SelectionBrush>
+
+                        <TextBox.SelectionTextBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#278C07" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </TextBox.SelectionTextBrush>
+
+                        <TextBox.BorderBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#278C07" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </TextBox.BorderBrush>
+
+                        <TextBox.CaretBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#278C07" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </TextBox.CaretBrush>
+                    </TextBox>
+                    <Button Click="AddBox_Click" x:Name="AddBox" Content="ДОБАВИТЬ" FontFamily="Srbija Sans" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Margin="5,595,292,10">
+                        <Button.BorderBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#278C07" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.BorderBrush>
+                    </Button>
+                    <Button Click="SaveBox_Click" x:Name="SaveBox" Content="ИЗМЕНИТЬ" FontFamily="Srbija Sans" Foreground="white" Style="{StaticResource MaterialDesignOutlinedDarkButton}" IsEnabled="False" Margin="292,595,5,10">
+                        <Button.BorderBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3BD30B" Offset="0.0"/>
+                                <GradientStop Color="#BDF0AD" Offset="0.5"/>
+                                <GradientStop Color="#278C07" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.BorderBrush>
+                    </Button>
                 </Grid>
             </Grid>
         </Grid>

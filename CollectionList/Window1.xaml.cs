@@ -1,27 +1,23 @@
-﻿using ControlzEx.Standard;
-using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.UI.WebControls;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using CollectionList.Properties;
+using LiveCharts;
+using LiveCharts.Wpf;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Forms;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Configuration;
-using CollectionList.Properties;
+using ControlzEx.Standard;
+using System.Security.Policy;
+using System.Windows.Forms;
 
 namespace CollectionList
 {
-    public partial class Window1 : Window
+    public partial class Window1 : System.Windows.Window
     {
         public Window1()
         {
@@ -70,119 +66,91 @@ namespace CollectionList
             Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text))
+            Window5 window5 = new Window5();
+            window5.Show();
+            window5.Closed += (s, args) =>
             {
-                System.Windows.Forms.MessageBox.Show("Пожалуйста, заполните все поля.");
-                return;
-            }
+                double textValue = Convert.ToDouble(window5.Value4);
+                double textMoney = Convert.ToDouble(textLost.Text);
+                double textBalan = Convert.ToDouble(textBalance.Text);
 
-            listBoxCost.Items.Add(textBox2.Text + " - " + textBox3.Text + " рублей");
-            double textBox5Value = Convert.ToDouble(textBox5.Text);
-            double textBox3Value = Convert.ToDouble(textBox3.Text);
-            double textBox6Value = Convert.ToDouble(textBox6.Text);
-            double result = textBox5Value - textBox3Value;
-            double result1 = textBox3Value + textBox6Value;
-            textBox5.Text = result.ToString();
-            textBox6.Text = result1.ToString();
-            textBox2.Clear();
-            textBox3.Clear();
-            Save_button.IsEnabled = true;
-        }
+                double resultLost = textValue + textMoney;
+                double resultBalance = textBalan - textValue;
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (double.TryParse(textBox1.Text, out double value) && value >= 0) // преобразование строки в целочисленное значение и проверка на неотрицательность
-            {
-                listBoxCost.Items.Add("Начальное состояние: " + value.ToString() + " рублей");
-                textBox5.Text = value.ToString();
-                textBox1.Clear();
-            }
-            else
-            {
-                System.Windows.Forms.MessageBox.Show("Введите корректное значение!");
-            }
-        }
+                textLost.Text = Convert.ToString(resultLost);
+                textBalance.Text = Convert.ToString(resultBalance);
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (double.TryParse(textBox5.Text, out double value) && value >= 0 | double.TryParse(textBox6.Text, out double value1) && value1 >= 0) // преобразование строки в целочисленное значение и проверка на неотрицательность
-            {
-                listBoxCost.Items.Add("У вас осталось " + value.ToString() + " рублей\n" + "Общая сумма затрат " + value1.ToString() + " рублей");
-            }
-            else
-            {
-                System.Windows.Forms.MessageBox.Show("Введите начальное состояние!");
-            }
+                if (textMoney < textValue)
+                {
+                    MuchCost.Text = Convert.ToString(window5.Value3 + " - " + window5.Value4 + " рублей");
+                }
+
+                ListCost.Items.Add(window5.Value3 + " - " + window5.Value4 + " рублей" + " [" + Data.Text + "]");
+            };
         }
 
         private void Down_button_Click(object sender, EventArgs e)
         {
-            if (listBoxCost.SelectedIndex < listBoxCost.Items.Count)
+            if (ListCost.SelectedItem == null)
             {
-                int index = listBoxCost.SelectedIndex;
-                String text = listBoxCost.SelectedItem.ToString();
-                listBoxCost.Items.RemoveAt(listBoxCost.SelectedIndex);
-                listBoxCost.Items.Insert(index + 1, text);
+                System.Windows.MessageBox.Show("Выберите элемент для перемещения вниз!", "Ошибка!");
+            }
+            else if (ListCost.SelectedIndex < ListCost.Items.Count - 1)
+            {
+                int index = ListCost.SelectedIndex;
+                string text = ListCost.SelectedItem.ToString();
+                ListCost.Items.RemoveAt(index);
+                ListCost.Items.Insert(index + 1, text);
+                ListCost.SelectedIndex = index + 1;
             }
         }
 
         private void Up_button_Click(object sender, EventArgs e)
         {
-            if (listBoxCost.SelectedIndex > 0)
+            if (ListCost.SelectedItem == null)
             {
-                int index = listBoxCost.SelectedIndex;
-                String text = listBoxCost.SelectedItem.ToString();
-                listBoxCost.Items.RemoveAt(listBoxCost.SelectedIndex);
-                listBoxCost.Items.Insert(index - 1, text);
+                System.Windows.MessageBox.Show("Выберите элемент для перемещения вверх!", "Ошибка!");
+            }
+            else if (ListCost.SelectedIndex > 0)
+            {
+                int index = ListCost.SelectedIndex;
+                string text = ListCost.SelectedItem.ToString();
+                ListCost.Items.RemoveAt(index);
+                ListCost.Items.Insert(index - 1, text);
+                ListCost.SelectedIndex = index - 1;
             }
         }
 
+
         private void Delete_button_Click(object sender, EventArgs e)
         {
-            if (listBoxCost.SelectedIndex != 0)
-                listBoxCost.Items.RemoveAt(listBoxCost.SelectedIndex);
+            if (ListCost.SelectedItem == null)
+            {
+                System.Windows.MessageBox.Show("Выберите элемент для удаления!", "Ошибка!");
+            }
+            else
+            {
+                ListCost.Items.Remove(ListCost.SelectedItem);
+            }
         }
 
         private void Clear_button_Click(object sender, EventArgs e)
         {
-            listBoxCost.Items.Clear();
-            textBox5.Clear();
-            textBox6.Clear();
-            Save_button.IsEnabled = false;
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            if (listBoxCost.SelectedItem != null)
-            {
-                int selectedIndex = listBoxCost.SelectedIndex;
-                listBoxCost.Items[selectedIndex] = textBox4.Text;
-                textBox4.Clear();
-                textBox4.IsEnabled = false;
-                button4.IsEnabled = false;
-            }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            System.Windows.Forms.MessageBox.Show("Введите начальное состояние!\n\tНапример: 37500");
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-            System.Windows.Forms.MessageBox.Show("Введите в первую строку название, а во вторую цену!");
+            ListCost.Items.Clear();
+            textBalance.Text = "0";
+            textLost.Text = "0";
+            MuchCost.Clear();
         }
 
         private void listBox1_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (listBoxCost.SelectedItem != null)
+            if (ListCost.SelectedItem != null)
             {
-                string selectedItem = listBoxCost.SelectedItem.ToString();
-                textBox4.Text = selectedItem;
-                textBox4.IsEnabled = true;
-                button4.IsEnabled = true;
+                string selectedItem = ListCost.SelectedItem.ToString();
+                EditBox.Text = selectedItem;
+                EditBox.IsEnabled = true;
             }
         }
 
@@ -195,9 +163,9 @@ namespace CollectionList
             {
                 StreamWriter writter = new StreamWriter(dlg.FileName);
 
-                for (int i = 0; i < listBoxCost.Items.Count; i++)
+                for (int i = 0; i < ListCost.Items.Count; i++)
                 {
-                    writter.WriteLine(listBoxCost.Items[i].ToString());
+                    writter.WriteLine(ListCost.Items[i].ToString());
                 }
                 System.Windows.Forms.MessageBox.Show("Сохранение прошло успешно!");
                 writter.Close();
@@ -214,40 +182,103 @@ namespace CollectionList
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
 
-
                 if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     string[] lines = File.ReadAllLines(openFileDialog.FileName);
                     foreach (string line in lines)
-                        listBoxCost.Items.Add(line);
-
+                        ListCost.Items.Add(line);
                 }
             }
         }
 
         private void Window1_Loaded(object sender, RoutedEventArgs e)
         {
-            listBoxCost.Items.Clear();
-            string[] listBoxState = Settings.Default.ListBoxState.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+            ListCost.Items.Clear();
+            string[] listBoxState = Settings.Default.ListCostState.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string item in listBoxState)
             {
-                listBoxCost.Items.Add(item);
+                ListCost.Items.Add(item);
             }
-            textBox5.Text = Settings.Default.TextBox5State;
-            textBox6.Text = Settings.Default.TextBox6State;
+            textBalance.Text = Settings.Default.TextBalanceState;
+            textLost.Text = Settings.Default.TextLostState;
+            MuchCost.Text = Settings.Default.TextMuchState;
         }
 
         private void Window1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             string listBoxState = "";
-            foreach (object item in listBoxCost.Items)
+            foreach (object item in ListCost.Items)
             {
                 listBoxState += item.ToString() + "|";
             }
-            Settings.Default.ListBoxState = listBoxState;
-            Settings.Default.TextBox5State = textBox5.Text;
-            Settings.Default.TextBox6State = textBox6.Text;
+            Settings.Default.ListCostState = listBoxState;
+            Settings.Default.TextBalanceState = textBalance.Text;
+            Settings.Default.TextLostState = textLost.Text;
+            Settings.Default.TextMuchState = MuchCost.Text;
             Settings.Default.Save();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Window4 window4 = new Window4();
+            window4.Show();
+            window4.Closed += (s, args) =>
+            {
+                if (!string.IsNullOrEmpty(window4.Value1))
+                {
+                    textBalance.Text = window4.Value1;
+                    ListCost.Items.Add(window4.Value1 + " рублей");
+                }
+            };
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ListCost.Items.Add("       У вас осталось: " + textBalance.Text + " рублей\n" + "Общая сумма затрат: " + textLost.Text + " рублей");
+        }
+
+        private void EditBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (ListCost.SelectedItem != null)
+                {
+                    int selectedIndex = ListCost.SelectedIndex;
+                    ListCost.Items[selectedIndex] = EditBox.Text;
+                    EditBox.Clear();
+                    EditBox.IsEnabled = false;
+                }
+            }
+        }
+
+        private void AddMoney_Click(object sender, RoutedEventArgs e)
+        {
+            Window6 window6 = new Window6();
+            window6.Show();
+            window6.Closed += (s, args) =>
+            {
+                double textAddMoney = Convert.ToDouble(window6.AddMoneyBox.Text);
+                double textBalanceMoney = Convert.ToDouble(textBalance.Text);
+
+                double resultAddMoney = textAddMoney + textBalanceMoney;
+
+                textBalance.Text = Convert.ToString(resultAddMoney);
+            };
+        }
+
+        private void LostMoney_Click(object sender, RoutedEventArgs e)
+        {
+            Window7 window7 = new Window7();
+            window7.Show();
+            window7.Closed += (s, args) =>
+            {
+                double textLostyMoney = Convert.ToDouble(window7.LostMoneyBox.Text);
+                double textLouseMoney = Convert.ToDouble(textLost.Text);
+
+                double resultLostyMoney = textLouseMoney - textLostyMoney;
+
+                textLost.Text = Convert.ToString(resultLostyMoney);
+            };
         }
     }
 }

@@ -106,16 +106,12 @@ namespace CollectionList
             if (dialog.ShowDialog() == true)
             {
                 var encoder = new PngBitmapEncoder();
-                var brush = canvas.Background as ImageBrush;
-                if (brush != null && brush.ImageSource != null)
+                var bmp = new RenderTargetBitmap((int)canvas.ActualWidth, (int)canvas.ActualHeight, 96, 96, PixelFormats.Default);
+                bmp.Render(canvas);
+                encoder.Frames.Add(BitmapFrame.Create(bmp));
+                using (FileStream stream = new FileStream(dialog.FileName, FileMode.Create))
                 {
-                    var bmp = new RenderTargetBitmap((int)canvas.ActualWidth, (int)canvas.ActualHeight, 96, 96, PixelFormats.Default);
-                    bmp.Render(canvas);
-                    encoder.Frames.Add(BitmapFrame.Create(bmp));
-                    using (FileStream stream = new FileStream(dialog.FileName, FileMode.Create))
-                    {
-                        encoder.Save(stream);
-                    }
+                    encoder.Save(stream);
                 }
             }
         }
@@ -251,6 +247,11 @@ namespace CollectionList
         private void FPurple_Click(object sender, RoutedEventArgs e)
         {
             canvas.Background = new SolidColorBrush(Colors.Purple);
+        }
+
+        private void NewImage_Click(object sender, RoutedEventArgs e)
+        {
+            canvas.Background = new SolidColorBrush(Colors.White);
         }
     }
 }

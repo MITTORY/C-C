@@ -1,0 +1,121 @@
+﻿<Window x:Class="CollectionList.Window5"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CollectionList"
+        mc:Ignorable="d"
+       Height="384" Width="720" ResizeMode="NoResize" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="Transparent">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="boolToVis"/>
+    </Window.Resources>
+
+    <Border CornerRadius="35 35 35 35" Background="#FF222222" MouseDown="Border_MouseDown">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Background="#FF191919" CornerRadius="35 35 0 0">
+                <TextBlock Text="РАСХОД" FontSize="35" Foreground="White"  TextAlignment="Center" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Srbija Sans"/>
+            </Border>
+            <Grid Grid.Row="1">
+                <TextBox x:Name="Name" Text="" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="55" HorizontalAlignment="Center" FontFamily="Srbija Sans" VerticalAlignment="Top" Width="700" Height="83" Foreground="White" Margin="0,10,0,0">
+                    <TextBox.SelectionBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#8811C7" Offset="0"/>
+                            <GradientStop Color="#DA31AF" Offset="0.25"/>
+                            <GradientStop Color="#D33B0B" Offset="0.50"/>
+                            <GradientStop Color="#4629DB" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBox.SelectionBrush>
+
+                    <TextBox.SelectionTextBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#8811C7" Offset="0"/>
+                            <GradientStop Color="#DA31AF" Offset="0.25"/>
+                            <GradientStop Color="#D33B0B" Offset="0.50"/>
+                            <GradientStop Color="#4629DB" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBox.SelectionTextBrush>
+
+                    <TextBox.BorderBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#8811C7" Offset="0"/>
+                            <GradientStop Color="#DA31AF" Offset="0.25"/>
+                            <GradientStop Color="#D33B0B" Offset="0.50"/>
+                            <GradientStop Color="#4629DB" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBox.BorderBrush>
+
+                    <TextBox.CaretBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#8811C7" Offset="0"/>
+                            <GradientStop Color="#DA31AF" Offset="0.25"/>
+                            <GradientStop Color="#D33B0B" Offset="0.50"/>
+                            <GradientStop Color="#4629DB" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBox.CaretBrush>
+                </TextBox>
+                <TextBox x:Name="Money" Text="" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="35" HorizontalAlignment="Center" FontFamily="Srbija Sans" VerticalAlignment="Top" Width="700" Height="83" Foreground="White" Margin="0,117,0,0">
+                    <TextBox.SelectionBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#8811C7" Offset="0"/>
+                            <GradientStop Color="#DA31AF" Offset="0.25"/>
+                            <GradientStop Color="#D33B0B" Offset="0.50"/>
+                            <GradientStop Color="#4629DB" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBox.SelectionBrush>
+
+                    <TextBox.SelectionTextBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#8811C7" Offset="0"/>
+                            <GradientStop Color="#DA31AF" Offset="0.25"/>
+                            <GradientStop Color="#D33B0B" Offset="0.50"/>
+                            <GradientStop Color="#4629DB" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBox.SelectionTextBrush>
+
+                    <TextBox.BorderBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#8811C7" Offset="0"/>
+                            <GradientStop Color="#DA31AF" Offset="0.25"/>
+                            <GradientStop Color="#D33B0B" Offset="0.50"/>
+                            <GradientStop Color="#4629DB" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBox.BorderBrush>
+
+                    <TextBox.CaretBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#8811C7" Offset="0"/>
+                            <GradientStop Color="#DA31AF" Offset="0.25"/>
+                            <GradientStop Color="#D33B0B" Offset="0.50"/>
+                            <GradientStop Color="#4629DB" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBox.CaretBrush>
+                </TextBox>
+                <Button x:Name="Button_ADD" Content="ДОБАВИТЬ" FontFamily="Srbija Sans" FontWeight="Bold" Height="40" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Foreground="White" Margin="30,220,400,24" Click="Button_ADD_Click">
+                    <Button.BorderBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#8811C7" Offset="0"/>
+                            <GradientStop Color="#DA31AF" Offset="0.25"/>
+                            <GradientStop Color="#D33B0B" Offset="0.50"/>
+                            <GradientStop Color="#4629DB" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.BorderBrush>
+                </Button>
+                <Button x:Name="Button_ADD_Copy" Content="Выход" FontFamily="Srbija Sans" FontWeight="Bold" Height="40" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Foreground="White" Margin="400,220,30,24" Click="Button_ADD_Exit">
+                    <Button.BorderBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#8811C7" Offset="0"/>
+                            <GradientStop Color="#DA31AF" Offset="0.25"/>
+                            <GradientStop Color="#D33B0B" Offset="0.50"/>
+                            <GradientStop Color="#4629DB" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.BorderBrush>
+                </Button>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
